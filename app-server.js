@@ -1,71 +1,48 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var mysql = require('mysql');
+
+var config = require('./app/config');
 
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
+var auctionModule = require('./app/modules/auction.module');
+var persistModule = require('./app/modules/persist.module');
+
 var parseUrlEncoded = bodyParser.urlencoded({extended : false});
 
 app.use(bodyParser.json());
 
-app.use(express.static("public"));
+app.use(express.static("./app/public"));
 
-//TODO : fichier config
-var connection = mysql.createConnection({
-	   host     : 'localhost',
-	   user     : 'crossover',
-	   password : 'crossover',
-	   database : 'crossover'
-});
+//init of persist module
+persistModule.init();
 
-var numberPlayer = 0;
-
-io.on('connection', function(client){
-	
-	// when user join the auction
-	client.on('join', function(player){
-		numberPlayer++;
-		console.log(player + " join auction..., number of player " + numberPlayer);
-		
-		//if user is already connected will be logged out
-		client.broadcast.emit('disconnectUser', player);
-		
-	});
-	
-	client.on('disconnect', function(player){
-		numberPlayer--;
-		console.log(player +  " leave auction..., number of player " + numberPlayer);
-	});
-	
-	
-});
-
-
+// init of auction module
+auctionModule.init(io);
 
 
 app.get('/', function(req,response){
-	response.sendFile(__dirname + "/public/views/index.html");
+	response.sendFile(__dirname + "/app/public/views/index.html");
 });
 
 
 app.post('/connect', parseUrlEncoded, function(request, response){
 	var name = request.body.login;
 	//connection.connect();
-	getUser(connection, name, function(err, rows, fields) {
+	persistModule.getUser( name, function(user) {
 		//existing user
-		  if(rows.length > 0){
-			  response.json(rows[0]);
+		  if(user){
+			  response.json(user);
 			  //connection.end();
 			  response.end();
 		  }
 		  // new user
 		  else{
-			  connection.query('INSERT INTO user SET name = ?', name, function(err, result) {
-				  if (err) throw err;
-				  getUser(connection, name, function(err, rows, fields) {
-					  response.json(rows[0]);
+			  persistModule.setUser(name, function(err, result) {
+				  getUser(connection, name, function(user) {
+					  response.json(user);
 					  //connection.end();
 					  response.end();
 				  });
@@ -75,13 +52,6 @@ app.post('/connect', parseUrlEncoded, function(request, response){
 	});
 });
 
-
-function getUser(connection, name, callback){
-	connection.query('SELECT * FROM user WHERE name = ?', name, function(err, rows, fields){
-		if (err) throw err;
-		callback(err, rows, fields);
-	});
-}
 
 server.listen(80, function(){
 	console.log("Node listen on " + 80);
