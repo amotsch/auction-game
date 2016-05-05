@@ -1,0 +1,40 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/css3/border-radius"
+
+
+$backgroundColor : #BBB
+$errorColor : #a94442
+$bleu : #2C8EBF
+
+body
+	background: $backgroundColor
+	font-size: 16px
+
+h1
+	margin: 40px 0 60px
+
+.white-color
+	color: white
+
+input, .action
+	@include border-radius(7px, 7px)
+	border: 0
+	color: white
+	&.big
+		font-size: 25px
+		padding: 10px 20px
+
+.login
+	text-align: center
+	input[type=text]
+		background-color: white
+		color: black
+		width: 50%
+		vertical-align: middle
+
+.panel-body
+	line-height: 3em		

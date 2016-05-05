@@ -1,0 +1,16 @@
+<div class="panel panel-primary" ng-if="auction">
+	<div class="panel-heading"><b>Current caution</b> </div>
+	<div class="panel-body">
+		Seller : {{ auction.seller }}
+		<br/>
+		Item name: {{ auction.item }}  - Quantity: {{ auction.quantity }}
+		<br/>
+<!-- 		timer left: TODO -->
+		<div ng-if="auction.winningBid"> Wining bid : {{ auction.winningBid }}</div>
+		<div ng-if="!auction.winningBid"> Init bid : {{ auction.initBid }}</div>
+		
+		<div>
+			<a ng-click="bid(200)" class="btn btn-success action"> Place Bid </a>
+		</div>
+	</div>
+</div>

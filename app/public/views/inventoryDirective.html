@@ -1,14 +1,16 @@
-<div>
-	<div>Inventory</div>
-	<div>
-		<div>
-			Breads {{ player.breads }} <a ng-click="action({produit:'breads'})"> Launch auction</a>
-		</div>
-		<div>
-			Carrots {{ player.carrots }} <a ng-click="action({produit:'carrots'})"> Launch auction</a>
-		</div>
-		<div>
-			Diamond {{ player.diamonds }} <a ng-click="action({produit:'diamonds'})"> Launch auction</a>
-		</div>
+<div class="panel panel-primary">
+	<div class="panel-heading"><b>Inventory</b> </div>
+	<div class="panel-body">
+		<div class="col-xs-4">Breads</div>
+		<div class="col-xs-2">{{ player.breads }}</div>
+		<div class="col-xs-6"><a ng-click="launchAuction('breads')" class="btn btn-success action"> Launch auction</a></div>
+			
+		<div class="col-xs-4"> Carrots </div>
+		<div class="col-xs-2">{{ player.carrots }}</div> 
+		<div class="col-xs-6"><a ng-click="launchAuction('carrots')" class="btn btn-success action"> Launch auction</a></div>
+		
+		<div class="col-xs-4"> Diamond </div>
+		<div class="col-xs-2">{{ player.diamonds }}</div>
+		<div class="col-xs-6"><a ng-click="launchAuction('diamonds')" class="btn btn-success action"> Launch auction</a></div>
 	</div>
 </div>
