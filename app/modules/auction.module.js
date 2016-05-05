@@ -1,5 +1,6 @@
 var persistModule = require('./persist.module');
 
+
 /**
  * initialisation socket.io
  */
@@ -44,7 +45,7 @@ var init = function(io){
 		        if(count >= currentAuction.time){
 		        	io.sockets.emit('endCaution', currentAuction);
 		        	clearInterval(timer);
-		        	this.updateAfterCaution(clients,currentAuction);
+//		        	auctionModule.updateAfterAuction(clients,currentAuction); //TODO
 		        	currentAuction = null;
 		        }
 		        else{
@@ -68,7 +69,7 @@ var init = function(io){
 	});
 }
 
-var updateAfterCaution = function(clients, auction){
+var updateAfterAuction = function(clients, auction){
 	//TODO
 	var seller = {};
 	seller.name = auction.seller;
