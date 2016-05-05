@@ -1,0 +1,13 @@
+{
+  "name": "Crossover auction",
+  "description": "Crossover auction game",
+  "version": "0.0.0",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.5",
+    "bootstrap": "~3",
+    "angular-route": "~1.5",
+    "socket.io-client": "^1.4.6"
+  }
+}

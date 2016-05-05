@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="AuctionApp">
+	<head>
+		<title>Auction</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="/assets/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/assets/css/global.css" />
+		<link rel="shortcut icon" href="/assets/img/favicon.ico" />
+	</head>
+
+	<body>
+
+		
+		<div ng-view></div>
+		
+		
+		<script src="http://localhost/assets/bower_components/socket.io-client/socket.io.js"></script>
+		<script>
+		
+			var socket = io.connect("http://localhost");
+			socket.on('messages', function(data){
+				alert(data.hello);
+			});
+		
+		</script>
+		
+	</body>
+</html>

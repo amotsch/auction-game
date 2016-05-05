@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="AuctionApp">
+	<head>
+		<title>Auction</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="/assets/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/assets/css/global.css" />
+		<link rel="shortcut icon" href="/assets/img/favicon.ico" />
+	</head>
+
+	<body>
+	
+		
+		<div ng-view></div>
+		
+		
+		<script src="/assets/bower_components/angular/angular.min.js"></script>
+		<script src="/assets/bower_components/angular-route/angular-route.min.js"></script>
+		<script src="/assets/bower_components/socket.io-client/socket.io.js"></script>
+		
+		<script src="/app.js"></script>
+		<script src="/app.routes.js"></script>
+		<script src="/controllers/accountController.js"></script>
+		<script src="/controllers/loginController.js"></script>
+		<script src="/services/loginService.js"></script>
+		<script src="/services/sessionService.js"></script>
+		<script src="/services/socketService.js"></script>
+		<script src="/directives/player.directive.js"></script>
+		<script src="/directives/inventory.directive.js"></script>
+	</body>
+</html>

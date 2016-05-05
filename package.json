@@ -1,0 +1,21 @@
+{
+  "name": "crossover-auction",
+  "version": "1.0.0",
+  "description": "crossover auction angularjs nodejs",
+  "main": "",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "adrien motsch",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "mysql": "^2.10.2",
+    "socket.io": "^1.4.6"
+  }
+}
