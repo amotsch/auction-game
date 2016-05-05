@@ -34,16 +34,26 @@ var init = function(io){
 		//start auction event
 		client.on('startAuction', function(auction){
 			currentAuction = auction;
-			console.log(auction);
+			currentAuction.time = 20;
 			io.sockets.emit('startAuction', currentAuction);
 			
-
-			//client needs to be aware when game is ended
-			//but if we have simultaneous games this will not work
-			setTimeout(function(){
-				io.sockets.emit('endCaution', currentAuction);
-
-			}, 8000); //after 8 seconds for test
+			var count = 0;
+			var timer = setInterval(function () { 
+		        if(count >= currentAuction.time){
+		        	io.sockets.emit('endCaution', currentAuction);
+		        	currentAuction = null;
+		        	clearInterval(timer);
+		        }
+		        else{
+		        	io.sockets.emit('timeAuction', currentAuction.time - count);
+		        }
+		        
+		        if(count == 10){
+		        	currentAuction.time +=5;
+		        	console.log(currentAuction.time);
+		        }
+		        count++;
+		    }, 1000); 
 			
 		});
 		

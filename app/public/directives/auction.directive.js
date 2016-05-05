@@ -21,7 +21,12 @@
 				  });
 				  
 				  socketService.on('endCaution',function(currentAuction){
-					  scope.auction = {};
+					  scope.auction = null;
+					  scope.$apply();
+				  });
+				  
+				  socketService.on('timeAuction',function(timeAuction){
+					  scope.auction.time = timeAuction;
 					  scope.$apply();
 				  });
 			  }
