@@ -41,7 +41,7 @@ app.post('/connect', parseUrlEncoded, function(request, response){
 		  // new user
 		  else{
 			  persistModule.setUser(name, function(err, result) {
-				  getUser(connection, name, function(user) {
+				  persistModule.getUser(connection, name, function(user) {
 					  response.json(user);
 					  //connection.end();
 					  response.end();

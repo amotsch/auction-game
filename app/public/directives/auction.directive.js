@@ -20,6 +20,10 @@
 					  scope.$apply();
 				  });
 				  
+				  socketService.on('endCaution',function(currentAuction){
+					  scope.auction = {};
+					  scope.$apply();
+				  });
 			  }
 		  }
 	}

@@ -37,6 +37,14 @@ var init = function(io){
 			console.log(auction);
 			io.sockets.emit('startAuction', currentAuction);
 			
+
+			//client needs to be aware when game is ended
+			//but if we have simultaneous games this will not work
+			setTimeout(function(){
+				io.sockets.emit('endCaution', currentAuction);
+
+			}, 8000); //after 8 seconds for test
+			
 		});
 		
 		// bid event
