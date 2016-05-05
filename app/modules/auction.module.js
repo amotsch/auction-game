@@ -7,6 +7,7 @@ var init = function(io){
 		
 		// when user join the auction
 		client.on('join', function(player){
+			client.name = player;
 			numberPlayer++;
 			console.log(player + " join auction..., number of player " + numberPlayer);
 			
@@ -15,9 +16,9 @@ var init = function(io){
 			
 		});
 		
-		client.on('disconnect', function(player){
+		client.on('disconnect', function(){
 			numberPlayer--;
-			console.log(player +  " leave auction..., number of player " + numberPlayer);
+			console.log(client.name +  " leave auction..., number of player " + numberPlayer);
 		});
 		
 		

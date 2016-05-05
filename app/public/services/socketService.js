@@ -12,7 +12,7 @@
 			            socket.connect(); 
 			        }
 			    }else{
-			    	socket.emit('disconnect',session.getUser().name);
+			    	socket.emit('disconnect');
 			        socket.disconnect();
 			    }
 			}, 

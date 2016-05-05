@@ -53,6 +53,6 @@ app.post('/connect', parseUrlEncoded, function(request, response){
 });
 
 
-server.listen(80, function(){
-	console.log("Node listen on " + 80);
+server.listen(config.port, function(){
+	console.log("Node listen on " + config.port);
 });
