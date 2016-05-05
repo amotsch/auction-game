@@ -26,11 +26,16 @@ h1
 .big
 	font-size: 20px
 
+.error
+	color: $errorColor
+
 input, .action
 	@include border-radius(7px, 7px)
-	border: 0
-	color: white
-	&.big
+	&.full
+		width: 100%
+		padding: 10px 20px
+		font-size: 20px
+	&.verybig
 		font-size: 25px
 		padding: 10px 20px
 

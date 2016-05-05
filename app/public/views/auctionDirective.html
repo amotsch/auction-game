@@ -1,16 +1,26 @@
-<div class="panel panel-primary" ng-if="auction">
+<div class="panel panel-primary" >
 	<div class="panel-heading"><b>Current caution</b> </div>
 	<div class="panel-body">
-		<div class="alert text-center bold" ng-class="auction.time >= 10 ? 'alert-success' : 'alert-danger'"> Time left: <span class="big">{{ auction.time }} s </span></div>
-		Seller : {{ auction.seller }}
-		<br/>
-		Item name: {{ auction.item }}  - Quantity: {{ auction.quantity }}
-		<br/>
-		<div ng-if="auction.winningBid"> Wining bid : {{ auction.winningBid }}</div>
-		<div ng-if="!auction.winningBid"> Init bid : {{ auction.initBid }}</div>
-		
-		<div>
-			<a ng-click="bid(200)" class="btn btn-success action"> Place Bid </a>
+		<div ng-if="auction" class="text-center">
+			<div class="alert text-center bold" ng-class="auction.time >= 10 ? 'alert-success' : 'alert-danger'"> Time left: <span class="big">{{ auction.time }} s </span></div>
+			Seller : {{ auction.seller }}
+			<br/>
+			{{ auction.item }}  - Quantity: {{ auction.quantity }}
+			<br/>
+			<div ng-if="auction.winningBid"> Wining bid : {{ auction.winningBid }}</div>
+			<div ng-if="!auction.winningBid"> Init bid : {{ auction.initBid }}</div>
+			
+			<div>
+				<form ng-submit="bid(bid.amount)" >
+					<input type="number" ng-model="bid.amount" placeholder="Your BID" required/>
+					<br/>
+					<span class="error">{{erreurValidation}} &nbsp;</span>
+					<input type="submit" class="btn btn-success action full" value="Place your Bid" />
+				</form>
+			</div>
+		</div>
+		<div class="alert alert-success text-center" ng-if="!auction">
+			No auction at the moment
 		</div>
 	</div>
 </div>

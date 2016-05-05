@@ -41,6 +41,16 @@ var setUser = function( name, callback){
 	});
 }
 
+/**
+ * update user
+ */
+var updateUser = function( user, callback){
+	connection.query('UPDATE user SET coins = :coins, ' + user.item + '= :items', {coins: userId, items: user.quantity}, function(err, result) {
+		if (err) throw err;
+		callback(err, result);
+	});
+}
+
 module.exports.init = init;
 module.exports.getUser = getUser;
 module.exports.setUser = setUser;
