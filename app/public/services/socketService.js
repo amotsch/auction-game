@@ -1,5 +1,8 @@
 (function(angular){
 
+	/**
+	 * Service for sockets
+	 */
 	function socketService(session){
 		var socket;
 		

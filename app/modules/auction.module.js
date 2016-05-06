@@ -78,7 +78,9 @@ var init = function(io){
 	});
 }
 
-
+/**
+ * Start Auction
+ */
 var startAuction = function(auctionQueue, io, clients){
 	currentAuction = auctionQueue.shift();
 	currentAuction.time = config.auctionTime;
@@ -107,6 +109,9 @@ var startAuction = function(auctionQueue, io, clients){
     }, 1000); 
 }
 
+/**
+ * Update when auction is finished
+ */
 var updateAfterAuction = function(clientSockets, auction){
 	var seller = buildUserAuction(auction, false);
 	updateUserAuction(clientSockets[seller.name], seller);
@@ -115,6 +120,9 @@ var updateAfterAuction = function(clientSockets, auction){
 	updateUserAuction(clientSockets[buyer.name], buyer);
 }
 
+/**
+ * Update user after auction
+ */
 var updateUserAuction = function(clientSocket, userAuction){
 	persistModule.getUser( userAuction.name, function(user) {
 		userAuction.coins += user.coins;
@@ -127,6 +135,9 @@ var updateUserAuction = function(clientSocket, userAuction){
 	});
 }
 
+/**
+ * Create auction
+ */
 var buildUserAuction = function(auction, buy){
 	var auctionUser = {};
 	auctionUser.name = buy ? auction.buyer : auction.seller;

@@ -1,5 +1,8 @@
 (function(angular){
 
+	/**
+	 * Directive for Inventory
+	 */
 	function inventoryDirective(socketService, $uibModal){
 			
 		return{

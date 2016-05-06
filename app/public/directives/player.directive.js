@@ -1,5 +1,8 @@
 (function(angular){
 
+	/**
+	 * Directive for Player
+	 */
 	function playerDirective( ){
 
 		  return{
