@@ -38,9 +38,9 @@ var init = function(io){
 		//start auction event
 		client.on('startAuction', function(auction){
 			var existAuctionUser = auctionQueue.filter(function(auct){
-				return auct.seller = auction.seller;
+				return auct.seller == auction.seller;
 			});
-			console.log(existAuctionUser);
+
 			if(existAuctionUser.length == 0 && (currentAuction == null || currentAuction.seller != auction.seller)){
 				auctionQueue.push(auction);
 				if(currentAuction == null && auctionQueue.length == 1){
@@ -71,7 +71,7 @@ var init = function(io){
 
 var startAuction = function(auctionQueue, io, clients){
 	currentAuction = auctionQueue.shift();
-	currentAuction.time = 20; //TODO
+	currentAuction.time = 40; //TODO
 	currentAuction.pendings = auctionQueue.length;
 	io.sockets.emit('startAuction', currentAuction);
 	
