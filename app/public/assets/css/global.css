@@ -73,3 +73,7 @@ input.verybig, .action.verybig {
   font-size: 18px;
   padding: 0;
 }
+/* line 56, compass/sass/global.sass */
+.alert.large {
+  padding: 20px;
+}

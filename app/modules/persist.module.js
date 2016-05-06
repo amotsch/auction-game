@@ -36,8 +36,7 @@ var getUser = function( name, callback){
  */
 var setUser = function( name, callback){
 	connection.query('INSERT INTO user SET name = ?', name, function(err, result) {
-		if (err) throw err;
-		callback(err, result);
+		callback(err);
 	});
 }
 
@@ -45,12 +44,12 @@ var setUser = function( name, callback){
  * update user
  */
 var updateUser = function( user, callback){
-	connection.query('UPDATE user SET coins = :coins, ' + user.item + '= :items', {coins: userId, items: user.quantity}, function(err, result) {
-		if (err) throw err;
-		callback(err, result);
+	connection.query('UPDATE user SET coins = ?, ' + user.item + '= ?' + ' WHERE name = ?', [user.coins, user.quantity, user.name], function(err, result) {
+		callback(err);
 	});
 }
 
 module.exports.init = init;
 module.exports.getUser = getUser;
 module.exports.setUser = setUser;
+module.exports.updateUser = updateUser;

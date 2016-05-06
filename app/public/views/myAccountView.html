@@ -10,8 +10,14 @@
 			action="launchAuction(produit)">
 		</inventory>
 		<caution class="col-xs-4"
-			player="user">
+			player="user"
+			inform="inform(message)">
 		</caution>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 alert alert-success text-center big large" ng-if="messageInfo" style="margin-top:200px">
+			{{ messageInfo }}
+		</div>
 	</div>
 </main>
 	

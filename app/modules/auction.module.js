@@ -1,15 +1,16 @@
 var persistModule = require('./persist.module');
 
 
+var currentAuction;
+
 /**
  * initialisation socket.io
  */
 var init = function(io){
 	var numberPlayer = 0;
-	var currentAuction;
+	var auctionQueue = [];
 	var clients = [];
 	io.on('connection', function(client){
-		
 		// when user join the auction
 		client.on('join', function(player){
 			client.name = player;
@@ -36,23 +37,20 @@ var init = function(io){
 		
 		//start auction event
 		client.on('startAuction', function(auction){
-			currentAuction = auction;
-			currentAuction.time = 20;
-			io.sockets.emit('startAuction', currentAuction);
-			
-			var count = 0;
-			var timer = setInterval(function () { 
-		        if(count >= currentAuction.time){
-		        	io.sockets.emit('endCaution', currentAuction);
-		        	clearInterval(timer);
-//		        	auctionModule.updateAfterAuction(clients,currentAuction); //TODO
-		        	currentAuction = null;
-		        }
-		        else{
-		        	io.sockets.emit('timeAuction', currentAuction.time - count);
-		        }
-		        count++;
-		    }, 1000); 
+			var existAuctionUser = auctionQueue.filter(function(auct){
+				return auct.seller = auction.seller;
+			});
+			console.log(existAuctionUser);
+			if(existAuctionUser.length == 0 && (currentAuction == null || currentAuction.seller != auction.seller)){
+				auctionQueue.push(auction);
+				if(currentAuction == null && auctionQueue.length == 1){
+					startAuction(auctionQueue, io, clients);
+				}
+			}
+			else{
+				console.log("caution exist");
+				//				client.emit('');
+			}
 			
 		});
 		
@@ -62,25 +60,67 @@ var init = function(io){
 			if(amount > max){
 				currentAuction.winningBid = amount;
 				currentAuction.buyer = client.name;
-				console.log("bid= " + amount);
 				io.sockets.emit('bidAuction', amount);
 			}
 		});
 	});
 }
 
-var updateAfterAuction = function(clients, auction){
-	//TODO
-	var seller = {};
-	seller.name = auction.seller;
-	seller.coins = auction.winningBid;
-	seller.item = auction.item;
+
+var startAuction = function(auctionQueue, io, clients){
+	currentAuction = auctionQueue.shift();
+	currentAuction.time = 20;
+	io.sockets.emit('startAuction', currentAuction);
 	
-	var buyer = {};
-	seller.name = auction.buyer;
-	seller.coins = auction.winningBid;
-	seller.item = auction.item;
+	var count = 0;
+	var timer = setInterval(function () { 
+        if(count >= currentAuction.time){
+        	io.sockets.emit('endAuction', currentAuction);
+        	clearInterval(timer);
+        	if(currentAuction.winningBid){
+        		updateAfterAuction(clients,currentAuction);
+        	}
+        	currentAuction = null;
+        	if(auctionQueue.length > 0){
+        		startAuction(auctionQueue, io, clients);
+        	}
+        }
+        else{
+        	io.sockets.emit('timeAuction', currentAuction.time - count);
+        }
+        count++;
+    }, 1000); 
+}
+
+var updateAfterAuction = function(clientSockets, auction){
+	var seller = buildUserAuction(auction, false);
+	updateUserAuction(clientSockets[seller.name], seller);
 	
+	var buyer = buildUserAuction(auction, true);
+	updateUserAuction(clientSockets[buyer.name], buyer);
+}
+
+var updateUserAuction = function(clientSocket, userAuction){
+	persistModule.getUser( userAuction.name, function(user) {
+		userAuction.coins += user.coins;
+		userAuction.quantity += user[userAuction.item];
+		persistModule.updateUser( userAuction, function(err){
+			if(!err){
+				clientSocket.emit('resultAuction', userAuction);
+			}
+		});
+	});
+}
+
+var buildUserAuction = function(auction, buy){
+	var auctionUser = {};
+	auctionUser.name = buy ? auction.buyer : auction.seller;
+	auctionUser.coins = buy ? (- auction.winningBid) : auction.winningBid;
+	auctionUser.item = auction.item;
+	auctionUser.quantity = buy ?  auction.quantity : (- auction.quantity);
+	auctionUser.initialQuantity = auctionUser.quantity;
+	auctionUser.winningBid = auction.winningBid;
+	return auctionUser;
 }
 
 module.exports.init = init;

@@ -7,7 +7,7 @@
 			<br/>
 			{{ auction.item }}  - Quantity: {{ auction.quantity }}
 			<br/>
-			<div ng-if="auction.winningBid"> Wining bid : {{ auction.winningBid }}</div>
+			<div ng-if="auction.winningBid" class="big"> Wining bid : <b>{{ auction.winningBid }}</b></div>
 			<div ng-if="!auction.winningBid"> Init bid : {{ auction.initBid }}</div>
 			
 			<div>
@@ -19,7 +19,7 @@
 				</form>
 			</div>
 		</div>
-		<div class="alert alert-success text-center" ng-if="!auction">
+		<div class="alert alert-info text-center" ng-if="!auction">
 			No auction at the moment
 		</div>
 	</div>

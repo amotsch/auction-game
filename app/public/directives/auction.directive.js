@@ -6,8 +6,8 @@
 			  restrict:'E',
 			  templateUrl: '/views/auctionDirective.html',
 			  scope:{
-				  player: '='
-				  
+				  player: '=',
+				  inform: '&'
 			  },
 			  
 			  link: function(scope, elem, attrs) {
@@ -29,7 +29,7 @@
 					  scope.$apply();
 				  });
 				  
-				  socketService.on('endCaution',function(currentAuction){
+				  socketService.on('endAuction',function(currentAuction){
 					  scope.erreurValidation = null;
 					  scope.auction = null;
 					  scope.$apply();
@@ -42,6 +42,16 @@
 				  
 				  socketService.on('timeAuction',function(timeAuction){
 					  scope.auction.time = timeAuction;
+					  scope.$apply();
+				  });
+				  
+				  socketService.on('resultAuction',function(resultAuction){
+					  scope.player.coins = resultAuction.coins;
+					  scope.player[resultAuction.item] = resultAuction.quantity;
+					  var messageInfo = "You just " + (resultAuction.initialQuantity > 0 ? "buy " : "sell ");
+					  messageInfo += Math.abs(resultAuction.initialQuantity) + " " + resultAuction.item + "(s)";
+					  messageInfo += " for " + resultAuction.winningBid + " coins";
+					  scope.inform({message:messageInfo});
 					  scope.$apply();
 				  });
 			  }
