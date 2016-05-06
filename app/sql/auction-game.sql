@@ -16,38 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `auction`
---
-
-DROP TABLE IF EXISTS `auction`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `auction` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `item` varchar(45) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `initBid` int(11) NOT NULL,
-  `winningBid` int(11) NOT NULL,
-  `seller` bigint(20) NOT NULL,
-  `buyer` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `seller-id_idx` (`seller`),
-  KEY `buyer-id_idx` (`buyer`),
-  CONSTRAINT `buyer-id` FOREIGN KEY (`buyer`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `seller-id` FOREIGN KEY (`seller`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `auction`
---
-
-LOCK TABLES `auction` WRITE;
-/*!40000 ALTER TABLE `auction` DISABLE KEYS */;
-/*!40000 ALTER TABLE `auction` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `user`
 --
 
