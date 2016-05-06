@@ -14,7 +14,6 @@ var init = function(){
 		   password : config.database.password,
 		   database : config.database.schema
 	});
-	
 }
 
 /**
@@ -35,7 +34,7 @@ var getUser = function( name, callback){
  * set user
  */
 var setUser = function( name, callback){
-	connection.query('INSERT INTO user SET name = ?', name, function(err, result) {
+	connection.query("INSERT INTO user SET name = ?", name, function(err, result) {
 		callback(err);
 	});
 }

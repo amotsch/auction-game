@@ -2,7 +2,7 @@
 
 1/ Install the project dependencie : <b>npm install</b>
 
-2/ Install bower dependencie in app/ : <b>bower install</b>
+2/ Install bower dependencie  : <b>bower install</b>
 
 3/ Create a MySQL Database
 Server : localhost

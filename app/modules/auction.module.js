@@ -150,3 +150,5 @@ var buildUserAuction = function(auction, buy){
 }
 
 module.exports.init = init;
+
+module.exports.buildUserAuction = buildUserAuction;
