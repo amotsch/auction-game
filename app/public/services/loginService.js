@@ -31,7 +31,9 @@
 					socketService.on('disconnectUser', function (player){
 						if(player === session.getUser().name){
 							console.log('disconnected');
-							service.logout();
+							$rootScope.$apply( function(){
+									service.logout();
+							});	
 			            }
 					});
 				});

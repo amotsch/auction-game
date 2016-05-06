@@ -9,7 +9,7 @@ config.database.password = "crossover";
 config.database.schema = "crossover";
 
 //auction time
-config.auctionTime = 40;
+config.auctionTime = 90;
 
 //port configuration
 config.port = 80;
