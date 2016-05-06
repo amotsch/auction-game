@@ -7,7 +7,7 @@
 		};
 			
 		this.login = function(user){
-			var service = this; //TODO mieux?
+			var service = this; 
 			return $http({method: 'POST', url: '/connect/', 
 				data: {login: user.name}})
 				.then(function(response) {
@@ -28,14 +28,7 @@
 		this.logout = function(){
 			socketService.init(false);
 			session.destroy();
-//			$location.path('/');
-			$rootScope.$apply( function(){
-				$location.path('/'); 
-			});
-//			return $http({method: 'GET', url: '/disconnect'})
-//			.then(function(response){
-//					$location.path('/');					
-//		     });
+			$location.path('/');
 		}
 	}
 
