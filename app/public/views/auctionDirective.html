@@ -18,6 +18,9 @@
 					<input type="submit" class="btn btn-success action full" value="Place your Bid" />
 				</form>
 			</div>
+			<div ng-if="auction.pendings > 0">
+				{{ auction.pendings }} auction(s) pending...
+			</div>
 		</div>
 		<div class="alert alert-info text-center" ng-if="!auction">
 			No auction at the moment

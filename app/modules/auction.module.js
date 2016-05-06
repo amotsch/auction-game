@@ -46,10 +46,12 @@ var init = function(io){
 				if(currentAuction == null && auctionQueue.length == 1){
 					startAuction(auctionQueue, io, clients);
 				}
+				else{
+					io.sockets.emit('queueAuction', auctionQueue.length);
+				}
 			}
 			else{
-				console.log("caution exist");
-				//				client.emit('');
+				//				client.emit(''); //TODO
 			}
 			
 		});
@@ -69,7 +71,8 @@ var init = function(io){
 
 var startAuction = function(auctionQueue, io, clients){
 	currentAuction = auctionQueue.shift();
-	currentAuction.time = 20;
+	currentAuction.time = 20; //TODO
+	currentAuction.pendings = auctionQueue.length;
 	io.sockets.emit('startAuction', currentAuction);
 	
 	var count = 0;

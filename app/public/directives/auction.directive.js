@@ -45,6 +45,11 @@
 					  scope.$apply();
 				  });
 				  
+				  socketService.on('queueAuction',function(pendingsCaution){
+					  scope.auction.pendings = pendingsCaution;
+					  scope.$apply();
+				  });
+				  
 				  socketService.on('resultAuction',function(resultAuction){
 					  scope.player.coins = resultAuction.coins;
 					  scope.player[resultAuction.item] = resultAuction.quantity;
