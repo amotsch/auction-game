@@ -14,7 +14,7 @@ h1 {
 }
 
 /* line 20, compass/sass/global.sass */
-.white-color {
+.white-color, a.white-color {
   color: white;
 }
 

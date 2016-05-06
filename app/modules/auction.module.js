@@ -66,6 +66,10 @@ var init = function(io){
 		client.on('bidAuction', function(amount){
 			var max = currentAuction.winningBid ? currentAuction.winningBid : currentAuction.initBid;
 			if(amount > max){
+				//
+				if(currentAuction.time - currentAuction.count <=10){
+					currentAuction.time+=10;
+				}
 				currentAuction.winningBid = amount;
 				currentAuction.buyer = client.name;
 				io.sockets.emit('bidAuction', amount);
@@ -78,11 +82,13 @@ var init = function(io){
 var startAuction = function(auctionQueue, io, clients){
 	currentAuction = auctionQueue.shift();
 	currentAuction.time = config.auctionTime;
+	currentAuction.count = 0;
 	currentAuction.pendings = auctionQueue.length;
 	io.sockets.emit('startAuction', currentAuction);
 	
 	var count = 0;
-	var timer = setInterval(function () { 
+	var timer = setInterval(function () {
+		currentAuction.count = count;
         if(count >= currentAuction.time){
         	io.sockets.emit('endAuction', currentAuction);
         	clearInterval(timer);
