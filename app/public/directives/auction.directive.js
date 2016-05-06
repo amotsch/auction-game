@@ -1,5 +1,8 @@
 (function(angular){
 
+	/**
+	 * Directive for Auction
+	 */
 	function cautionDirective( socketService){
 			 
 		  return{

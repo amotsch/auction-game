@@ -5,9 +5,12 @@
 		this.isLoggedIn = function(){
 			return session.getUser() != null;
 		};
-			
+		
+		/**  Method to login */		
 		this.login = function(user){
+
 			var service = this; 
+
 			return $http({method: 'POST', url: '/connect/', 
 				data: {login: user.name}})
 				.then(function(response) {
@@ -24,11 +27,12 @@
 					});
 				});
 		};
-		
+		/**  Method to logout */
 		this.logout = function(){
 			socketService.init(false);
 			session.destroy();
 			$location.path('/');
+
 		}
 	}
 

@@ -1,5 +1,8 @@
 (function(angular){
 	 
+	 /**
+	 * Controller for Account
+	 */
 	function accueilController($scope, session, socketService, $timeout){
 		 $scope.user = session.getUser();
 		 

@@ -1,5 +1,8 @@
 (function(angular){
 	 
+	 /**
+	 * Controller for Login
+	 */
 	function loginController( $scope, $location, auth, $uibModal){
 		$scope.login = function(){
 			  auth.login($scope.user).then(function(resp) {
