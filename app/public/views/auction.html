@@ -1,0 +1,20 @@
+<div class="modal-header">
+	<h3 class="modal-title">Start auction</h3>
+</div>
+<div class="modal-body">
+	<div>Name :{{ auction.item }} </div>
+	<div class="margin-top-15">
+		Quantity : <input type="number" ng-model="auction.quantity" />
+	</div>
+	<div class="margin-top-15">
+		Minimum bid : <input type="number" ng-model="auction.initBid" />
+	</div>
+	<div class="margin-top-15">
+		<span class="error">{{ validationError }} </span>&nbsp; 
+	</div>
+</div>
+
+<div class="modal-footer">
+	<button class="btn btn-primary" type="button" ng-click="ok()">Start</button>
+	<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

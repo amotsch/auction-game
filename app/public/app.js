@@ -1,7 +1,7 @@
 (function(){
 	 'use strict';
 		
-	angular.module('AuctionApp', ['ngRoute'])
+	angular.module('AuctionApp', ['ngRoute', 'ui.bootstrap'])
 	.run(['$rootScope', '$location', 'auth', 'session',
 	      function ($rootScope, $location, auth, session, $http) {
 				$rootScope.session = session;

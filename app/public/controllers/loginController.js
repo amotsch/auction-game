@@ -1,6 +1,6 @@
 (function(angular){
 	 
-	function loginController( $scope, $location, auth){
+	function loginController( $scope, $location, auth, $uibModal){
 		$scope.login = function(){
 			  auth.login($scope.user).then(function(resp) {
 				  $location.path('my-account');
@@ -10,9 +10,10 @@
 				  $scope.erreurLogin = "Authentification problem";
 			  });
 		  };
+		  
 	}
 	
-	loginController.$inject = ['$scope', '$location', 'auth'];
+	loginController.$inject = ['$scope', '$location', 'auth', '$uibModal'];
 
 	angular
 	  .module('AuctionApp')
