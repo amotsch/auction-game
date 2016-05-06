@@ -10,11 +10,11 @@
 			<div ng-if="auction.winningBid" class="big"> Wining bid : <b>{{ auction.winningBid }}</b></div>
 			<div ng-if="!auction.winningBid"> Init bid : {{ auction.initBid }}</div>
 			
-			<div>
+			<div ng-if="player.name != auction.seller">
 				<form ng-submit="bid(bid.amount)" >
 					<input type="number" ng-model="bid.amount" placeholder="Your BID" required/>
 					<br/>
-					<span class="error">{{erreurValidation}} &nbsp;</span>
+					<span class="error">{{errorValidation}} &nbsp;</span>
 					<input type="submit" class="btn btn-success action full" value="Place your Bid" />
 				</form>
 			</div>

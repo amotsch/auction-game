@@ -11,7 +11,7 @@
 			  },
 			  
 			  link: function(scope, elem, attrs) {
-				  scope.erreurValidation = null;
+				  scope.errorValidation = null;
 				  scope.bid = function(amount){
 					  var max = scope.auction.winningBid ? scope.auction.winningBid : scope.auction.initBid;
 					  
@@ -20,7 +20,7 @@
 						  scope.bid.amount = null;
 					  }
 					  else{
-						  scope.erreurValidation = amount > scope.player.coins ? "You don't have enough coins" : "Your bid have to be more than " + max;
+						  scope.errorValidation = amount > scope.player.coins ? "You don't have enough coins" : "Your bid have to be more than " + max;
 					  }
 				  };
 
@@ -30,12 +30,13 @@
 				  });
 				  
 				  socketService.on('endAuction',function(currentAuction){
-					  scope.erreurValidation = null;
+					  scope.errorValidation = null;
 					  scope.auction = null;
 					  scope.$apply();
 				  });
 				  
 				  socketService.on('bidAuction',function(amount){
+					  scope.errorValidation = null;
 					  scope.auction.winningBid = amount;
 					  scope.$apply();
 				  });

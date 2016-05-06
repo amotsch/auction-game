@@ -1,5 +1,5 @@
 var persistModule = require('./persist.module');
-
+var config = require('../config');
 
 var currentAuction;
 
@@ -77,7 +77,7 @@ var init = function(io){
 
 var startAuction = function(auctionQueue, io, clients){
 	currentAuction = auctionQueue.shift();
-	currentAuction.time = 40; //TODO
+	currentAuction.time = config.auctionTime;
 	currentAuction.pendings = auctionQueue.length;
 	io.sockets.emit('startAuction', currentAuction);
 	

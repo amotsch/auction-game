@@ -39,28 +39,33 @@ h1 {
 }
 
 /* line 35, compass/sass/global.sass */
+.pointer {
+  cursor: pointer;
+}
+
+/* line 38, compass/sass/global.sass */
 input, .action {
   -moz-border-radius: 7px / 7px;
   -webkit-border-radius: 7px 7px;
   border-radius: 7px / 7px;
 }
-/* line 37, compass/sass/global.sass */
+/* line 40, compass/sass/global.sass */
 input.full, .action.full {
   width: 100%;
   padding: 10px 20px;
   font-size: 20px;
 }
-/* line 41, compass/sass/global.sass */
+/* line 44, compass/sass/global.sass */
 input.verybig, .action.verybig {
   font-size: 25px;
   padding: 10px 20px;
 }
 
-/* line 45, compass/sass/global.sass */
+/* line 48, compass/sass/global.sass */
 .login {
   text-align: center;
 }
-/* line 47, compass/sass/global.sass */
+/* line 50, compass/sass/global.sass */
 .login input[type=text] {
   background-color: white;
   color: black;
@@ -68,17 +73,17 @@ input.verybig, .action.verybig {
   vertical-align: middle;
 }
 
-/* line 53, compass/sass/global.sass */
+/* line 56, compass/sass/global.sass */
 .panel-body {
   line-height: 3em;
 }
 
-/* line 56, compass/sass/global.sass */
+/* line 59, compass/sass/global.sass */
 .alert {
   font-size: 18px;
   padding: 0;
 }
-/* line 59, compass/sass/global.sass */
+/* line 62, compass/sass/global.sass */
 .alert.large {
   padding: 20px;
 }
