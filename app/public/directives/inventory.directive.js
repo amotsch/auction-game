@@ -1,7 +1,10 @@
 (function(angular){
 
 	/**
-	 * Directive for Inventory
+	 * Directive to manage Inventory
+	 * 
+	 * @param {socketService} socketService: client socket service
+	 * @param {$uibModal} $uibModal:use to display modal window
 	 */
 	function inventoryDirective(socketService, $uibModal){
 			

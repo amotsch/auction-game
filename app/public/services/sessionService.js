@@ -1,8 +1,8 @@
 (function (angular) {
 
 	/**
-	 * Service for session
-	 */
+	* Service session
+	*/
   function sessionService(){
 
     this.getUser = function(){

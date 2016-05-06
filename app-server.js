@@ -22,12 +22,12 @@ persistModule.init();
 // init of auction module
 auctionModule.init(io);
 
-
+// login page
 app.get('/', function(req,response){
 	response.sendFile(__dirname + "/app/public/views/index.html");
 });
 
-
+// account page
 app.post('/connect', parseUrlEncoded, function(request, response){
 	var name = request.body.login;
 	//connection.connect();

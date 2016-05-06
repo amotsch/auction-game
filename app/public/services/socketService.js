@@ -2,6 +2,8 @@
 
 	/**
 	 * Service for sockets
+	 * 
+	 * @param {sessionService} session: session client
 	 */
 	function socketService(session){
 		var socket;

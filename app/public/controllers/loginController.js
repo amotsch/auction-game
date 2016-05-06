@@ -1,9 +1,13 @@
 (function(angular){
 	 
 	 /**
-	 * Controller for Login
+	 * Controller for login
+	 * 
+	 * @param {$scope} $scope: controller scope
+	 * @param {$location} $location: angular location service
+	 * @param {loginService} auth:  login service
 	 */
-	function loginController( $scope, $location, auth, $uibModal){
+	function loginController( $scope, $location, auth){
 		$scope.login = function(){
 			  auth.login($scope.user).then(function(resp) {
 				  $location.path('my-account');
@@ -16,7 +20,7 @@
 		  
 	}
 	
-	loginController.$inject = ['$scope', '$location', 'auth', '$uibModal'];
+	loginController.$inject = ['$scope', '$location', 'auth'];
 
 	angular
 	  .module('AuctionApp')

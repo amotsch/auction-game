@@ -17,3 +17,5 @@ Database userpassword : crossover
 6/ Run <b>node app-server.js</b>
 
 7/ With your browser go to localhost:XX (XX is the config.port defined in config.js)
+
+8/ Launch tests with mocha (npm install -g mocha)

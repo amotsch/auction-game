@@ -1,7 +1,9 @@
 (function(angular){
 
 	/**
-	 * Directive for Auction
+	 * Directive to manage Auctions
+	 * 
+	 * @param {socketService} socketService: client socket service
 	 */
 	function cautionDirective( socketService){
 			 

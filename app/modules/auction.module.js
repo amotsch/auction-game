@@ -5,6 +5,8 @@ var currentAuction;
 
 /**
  * initialisation socket.io
+ * 
+ * @param {socket.io} io - socket io server
  */
 var init = function(io){
 	var numberPlayer = 0;
@@ -80,6 +82,10 @@ var init = function(io){
 
 /**
  * Start Auction
+ * 
+ * @param {array} auctionQueue - auctions in queue
+ * @param {socket.io} io - socket io server
+ * @param {array serveClient } clients - array serveClient
  */
 var startAuction = function(auctionQueue, io, clients){
 	currentAuction = auctionQueue.shift();
@@ -111,6 +117,9 @@ var startAuction = function(auctionQueue, io, clients){
 
 /**
  * Update when auction is finished
+ * 
+ * @param {array serveClient } clientSockets - array serveClient
+ * @param {object} auction - finish auction 
  */
 var updateAfterAuction = function(clientSockets, auction){
 	var seller = buildUserAuction(auction, false);
@@ -122,6 +131,9 @@ var updateAfterAuction = function(clientSockets, auction){
 
 /**
  * Update user after auction
+ * 
+ * @param { serveClient } clientSocket - serveClient
+ * @param {Object} userAuction - data to update in user avec auction 
  */
 var updateUserAuction = function(clientSocket, userAuction){
 	persistModule.getUser( userAuction.name, function(user) {
@@ -137,6 +149,10 @@ var updateUserAuction = function(clientSocket, userAuction){
 
 /**
  * Create auction
+ * 
+ * @param { object } auction - finish auction
+ * @param {boolean} buy - true for buyer, false for seller
+ * 
  */
 var buildUserAuction = function(auction, buy){
 	var auctionUser = {};
@@ -150,5 +166,4 @@ var buildUserAuction = function(auction, buy){
 }
 
 module.exports.init = init;
-
 module.exports.buildUserAuction = buildUserAuction;

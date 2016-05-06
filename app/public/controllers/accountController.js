@@ -2,6 +2,11 @@
 	 
 	 /**
 	 * Controller for Account
+	 * 
+	 * @param {$scope} $scope: controller scope
+	 * @param {sessionService} session: session client
+	 * @param {socketService} socketService: client socket service
+	 * @param {$timeout} $timeout: timeout angular
 	 */
 	function accueilController($scope, session, socketService, $timeout){
 		 $scope.user = session.getUser();

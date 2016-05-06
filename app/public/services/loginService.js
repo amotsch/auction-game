@@ -1,5 +1,14 @@
 (function(angular){
 
+	/**
+	 * Service to login user
+	 * 
+	 * @param {$http} $http: service http
+	 * @param {sessionService} session: session client
+	 * @param {socketService} socketService: client socket service
+	 * @param {$location} $location: location service
+	 * @param {$$rootScope} $rootScope: root scope of the application
+	 */
 	function loginService($http, session, socketService, $location, $rootScope){
 		
 		this.isLoggedIn = function(){

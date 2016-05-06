@@ -17,7 +17,10 @@ var init = function(){
 }
 
 /**
- * get user
+ * Get user from Database
+ * 
+ * @param {string} name - user name
+ * @param {function} name - function callback return user
  */
 var getUser = function( name, callback){
 	connection.query('SELECT * FROM user WHERE name = ?', name, function(err, rows, fields){
@@ -31,7 +34,10 @@ var getUser = function( name, callback){
 }
 
 /**
- * set user
+ * Insert User in Database
+ * 
+ * @param {string} name - user name to insert
+ * @param {function} name - function callback
  */
 var setUser = function( name, callback){
 	connection.query("INSERT INTO user SET name = ?", name, function(err, result) {
@@ -40,7 +46,10 @@ var setUser = function( name, callback){
 }
 
 /**
- * update user
+ * update user in Database
+ * 
+ * @param {string} name - user name to update
+ * @param {function} name - function callback
  */
 var updateUser = function( user, callback){
 	connection.query('UPDATE user SET coins = ?, ' + user.item + '= ?' + ' WHERE name = ?', [user.coins, user.quantity, user.name], function(err, result) {
