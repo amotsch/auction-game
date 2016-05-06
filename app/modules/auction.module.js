@@ -40,20 +40,26 @@ var init = function(io){
 			var existAuctionUser = auctionQueue.filter(function(auct){
 				return auct.seller == auction.seller;
 			});
-
+			
+			//user can have just one auction
 			if(existAuctionUser.length == 0 && (currentAuction == null || currentAuction.seller != auction.seller)){
 				auctionQueue.push(auction);
+				// if no currentAuction and just one auction in queue, start auction
 				if(currentAuction == null && auctionQueue.length == 1){
 					startAuction(auctionQueue, io, clients);
 				}
+				//notify users about one pending auction
 				else{
 					io.sockets.emit('queueAuction', auctionQueue.length);
 				}
 			}
+			//notify if he has already one current auction or in queue
 			else{
-				//				client.emit(''); //TODO
+				var message = {};
+				message.success = false;
+				message.messageContent = "You can not have multiple auctions";
+				client.emit('messageAuction', message);
 			}
-			
 		});
 		
 		// bid event

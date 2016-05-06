@@ -53,10 +53,19 @@
 				  socketService.on('resultAuction',function(resultAuction){
 					  scope.player.coins = resultAuction.coins;
 					  scope.player[resultAuction.item] = resultAuction.quantity;
-					  var messageInfo = "You just " + (resultAuction.initialQuantity > 0 ? "buy " : "sell ");
-					  messageInfo += Math.abs(resultAuction.initialQuantity) + " " + resultAuction.item + "(s)";
-					  messageInfo += " for " + resultAuction.winningBid + " coins";
-					  scope.inform({message:messageInfo});
+					  var message = {};
+					  var messageContent = "You just " + (resultAuction.initialQuantity > 0 ? "buy " : "sell ");
+					  messageContent += Math.abs(resultAuction.initialQuantity) + " " + resultAuction.item + "(s)";
+					  messageContent += " for " + resultAuction.winningBid + " coins";
+					  message.success = true;
+					  
+					  message.messageContent = messageContent;
+					  scope.inform({message:message});
+					  scope.$apply();
+				  });
+				  
+				  socketService.on('messageAuction',function(messageCaution){
+					  scope.inform({message:messageCaution});
 					  scope.$apply();
 				  });
 			  }

@@ -15,8 +15,8 @@
 		</caution>
 	</div>
 	<div class="row">
-		<div class="col-xs-12 alert alert-success text-center big large" ng-if="messageInfo" style="margin-top:200px">
-			{{ messageInfo }}
+		<div class="col-xs-12 alert text-center big large" ng-if="messageInfo" ng-class="messageInfo.success ? 'alert-success' : 'alert-danger'" style="margin-top:200px">
+			{{ messageInfo.messageContent }}
 		</div>
 	</div>
 </main>
